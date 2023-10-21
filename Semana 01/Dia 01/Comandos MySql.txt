@@ -1,0 +1,23 @@
+Acceder a SQL mediante laragon
+mysql -h localhost -u root -p
+
+Crear base de datos
+create database cursos;
+
+Acceder a la base de datos
+use cursos;
+
+Crear una tabla
+create table alumnos(
+nombre varchar(100) not null,
+email varchar(200)
+);
+
+Mostrar datos de la tabla
+Select * from alumnos;
+
+Insertar datos en una tabla
+Insert into values
+('Jorge Perez','jorgeperez@hotmail.com'),
+('Ana Lopez', 'anita@gmail.com'),
+('Luis Delgado','luis@yahoo.es');
