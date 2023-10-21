@@ -1,0 +1,9 @@
+Comandos de git
+1 - Para clonar un repositorio
+git clone [url del repositorio de github]
+
+2 - para agregar cambios al repositorio local
+git add .
+
+3 - para guardar los cambios en el repositorio local
+git commit -m "Comentarios"
