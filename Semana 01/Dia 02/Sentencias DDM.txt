@@ -1,0 +1,139 @@
+select 
+	*
+from alumnos;
+
+select 
+nombre,apellidos
+from alumnos;
+
+select 
+concat(nombre,' ',apellidos) as nombre_completo
+from alumnos;
+
+select 
+max(nota)
+from alumnos;
+
+select 
+min(nota)
+from alumnos;
+
+select
+avg(nota)
+from alumnos;
+
+select 
+min(nota),max(nota),avg(nota)
+from alumnos;
+
+select
+distinct pais 
+from alumnos;
+
+select
+	* 
+from alumnos
+where pais ='Peru';
+
+select 
+count(*)
+from alumnos
+where nota > 10;
+
+select 
+count(*)
+from alumnos
+where nota > 10
+and pais = 'Peru';
+
+select 
+	*
+from alumnos
+where nota between 11 and 15;
+
+select 
+	*
+from alumnos
+where nombre like 'A%';
+
+select 
+	*
+from alumnos
+where nombre regexp '';
+
+select 
+	*
+from alumnos
+where email like '%@gmail.com';
+
+select 
+pais,count(*) as total
+from alumnos
+group by pais
+order by count(*) desc;
+
+select 
+pais,count(*) as total
+from alumnos
+group by pais
+having count(*) > 10 
+order by count(*) desc;
+
+-- mostrar el promedio de nota de alumnos por pais ordenado de mayor a menos
+select 
+pais, avg(nota) as promedio
+from alumnos
+group by pais
+having count(*) > 10
+order by promedio desc;
+
+-- mostrar el numero de almunos por pais que aprobaron el curso 
+-- considerar que la nota aprobatoria es mayor a 13
+select 
+pais,count(*) as total
+from alumnos
+where nota > 13
+group by pais desc;
+
+-- mostrar los alumnos de peru cuya nota es mayor al promedio del total del pais
+select 
+avg(nota) as promedio
+from alumnos
+where pais = 'Peru'
+
+select 
+	*
+from alumnos
+where pais = 'Peru'
+and nota > (select 
+avg(nota) as promedio
+from alumnos
+where pais = 'Peru');
+
+select 
+nombre,nota,(select 
+avg(nota) from alumnos
+where pais = 'Peru') as promedio,
+(nota - (select 
+avg(nota) from alumnos
+where pais = 'Peru')) as diferencia
+from alumnos
+where pais = 'Peru'
+and nota > (select 
+avg(nota) from alumnos
+where pais = 'Peru')
+
+select 
+pais,count(id) as total
+from alumnos
+where nota > (select avg(alu_avg.nota) from alumnos alu_avg where alu_avg.pais = pais)
+group by pais
+order by total desc;
+
+insert into alumnos(id,nombre,apellidos,email,pais,nota)
+values(1001,'Steven','Zegarra','stevenzegarra@gmail.com','Peru',20);
+
+select 
+*
+from alumnos
+where nombre ='Steven'
